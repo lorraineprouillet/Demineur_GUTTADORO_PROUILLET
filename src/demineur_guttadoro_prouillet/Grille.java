@@ -11,11 +11,11 @@ package demineur_guttadoro_prouillet;
  */
 public class Grille {
 
-    Cellule[][] cellules = new Cellule[20][10]; //on génère notre grille en choisissant une taille 
+    Cellule[][] cellules = new Cellule[10][20]; //on génère notre grille en choisissant une taille 
 
     public Grille() {
-        for (int i = 0; i < 21; i++) {
-            for (int j = 0; j < 11; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 20; j++) {
                 cellules[i][j] = new Cellule(); // initialise chaque cellules de notre grille avec objet cellule
             }
         }
@@ -42,6 +42,7 @@ public class Grille {
                 if ( cellules[i][j]==cellules[0][19]) {
                     cellules[i][j].mines_en_contact=0;
                 }
+                
                 
                 if ( cellules[i][j] == cellules [i][0]) {
                       
