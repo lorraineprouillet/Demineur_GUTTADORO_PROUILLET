@@ -29,7 +29,7 @@ public class Joueur {
         tempsJoueur = 0.0; // Le temps est initialisé à 0
         return tempsJoueur;
     }
-     
+    
      
     public void obtenirKits() {
         NbKitsDeminage++; //Incrémente le nb kits du joueur lorsqu'il en récupère
