@@ -10,5 +10,9 @@ package demineur_guttadoro_prouillet;
  * @author Rosanna Guttadoro
  */
 public class Partie {
+    Joueur joueurCourant;
+    Joueur[] listeJoueursGagnants;
+    
+    
     
 }
