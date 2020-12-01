@@ -62,17 +62,16 @@ public class Grille {
         //Affichage des colonnes en haut de la matrice pour permettre une meilleure lecture
         System.out.println("\n" +"1 2 3 4 5 6 7 8 9 10");
         
-        for ( int i=20 ; i>= 0 ; i--) {
-            
-            for ( int j=0 ; j<=20 ; j++ ) {
+        for (int i = 0; i < 21; i++) {
+            for (int j = 0; j < 11; j++) {
                
-                if  ( cellules[i][j].j == null ) {
-                    if ( cellules[i][j].trouNoir == true) {
-                        System.out.print("T ");
-                    // T corresponds à un trou noir
+                if  ( cellules[i][j].visible ==  ) {
+                    if ( cellules[i][j].presenceMines()) {
+                        System.out.print("M ");
+                    // M corresponds à une mine dans la case
                     }else if ( Cellules[i][j].desintegrateur == true) {
                         System.out.print("D ");
-                    // D corresponds a un désintégrateur
+                    // K corresponds a un kits de déminage
                     } else {
                         System.out.print("V ");
                     //V corresponds à  case vide
