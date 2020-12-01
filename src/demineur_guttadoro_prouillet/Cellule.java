@@ -63,6 +63,15 @@ public class Cellule {
         }
         
     }
+    
+    public boolean etrevisible () {
+        if ( visible = true ) {
+            return true;
+            
+        } else {
+            return false;
+        }
+    }
 }
 
    
