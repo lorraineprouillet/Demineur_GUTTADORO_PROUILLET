@@ -5,6 +5,8 @@
  */
 package demineur_guttadoro_prouillet;
 
+import javax.management.timer.Timer;
+
 /**
  *
  * @author Rosanna Guttadoro
@@ -13,7 +15,8 @@ public class Joueur {
     
     // def des attributs:
     String Nom; //Le joueur a un nom 
-    double tempsJoueur; //Permettra de classer les joueurs selon leur temps
+    Timer tempsJoueur = new Timer();
+    Timer temps = new Timer();//Permettra de classer les joueurs selon leur temps
     int NbKitsDeminage ; // Nombre kits pouvant être utilisé
     int NbVieRestante; // Nombre de vie qui permet au joueur de ne pas perdre à la premiere mine trouvée
     int NbCasesDecouvertes; // Permettra de se situer dans le jeu
@@ -25,12 +28,19 @@ public class Joueur {
         NbCasesDecouvertes = 0;
         
     }
-     public double DeclencherChrono () { // Cette fonction va permettre d'obtenir le temps mis
-        tempsJoueur = 0.0; // Le temps est initialisé à 0
-        return tempsJoueur;
+     public boolean DeclencherChrono () { // Cette fonction va permettre d'obtenir le temps mis
+        temps.start();
+        //.out.println(temps.start());
+        return true;
+       
     }
     
-     
+    public boolean ArreterChrono() { //Temps de fin du joueur
+        temps.stop();
+        //tempsJoueur = (temps.start()-temps.stop());
+        return true;
+    } 
+    
     public void obtenirKits() {
         NbKitsDeminage++; //Incrémente le nb kits du joueur lorsqu'il en récupère
         
