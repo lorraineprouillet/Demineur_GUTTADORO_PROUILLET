@@ -61,7 +61,7 @@ public class Cellule {
         } else {
             return true;
         }
-        
+    
     }
     
     public boolean etrevisible () {
@@ -71,6 +71,7 @@ public class Cellule {
         } else {
             return false;
         }
+    
     }
 }
 
