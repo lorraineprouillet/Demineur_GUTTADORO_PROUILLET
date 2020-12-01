@@ -20,35 +20,142 @@ public class Grille {
             }
         }
     }
+    
+        
+    public void initialiser_mines_en_contact () { 
+        for (int i=0;i<10;i++) {
+            for(int j=0;j<20;j++) {
+                
+            
+                if ( cellules[i][j]==cellules[0][0]) {
+                    cellules[i][j].mines_en_contact=0;
+                }
+                
+                if ( cellules[i][j]==cellules[9][19]) {
+                    cellules[i][j].mines_en_contact=0;
+                }
+                
+                if ( cellules[i][j]==cellules[9][0]) {
+                    cellules[i][j].mines_en_contact=0;
+                }
+                
+                if ( cellules[i][j]==cellules[0][19]) {
+                    cellules[i][j].mines_en_contact=0;
+                }
+                
+                if ( cellules[i][j] == cellules [i][0]) {
+                      
+                    if (cellules[i][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
 
-    public void initialiser_mines_en_contact() {
-        for (int i = 1; i < 5; i++) {
-            for (int j = 1; j < 5; j++) {
-                if (cellules[i - 1][j - 1].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
+                    if (cellules[i - 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i - 1][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }   
+                    
                 }
-                if (cellules[i][j - 1].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
-                }
+                
+                if ( cellules[i][j]==cellules[0][j]) {
+                     
+                   
+                    if (cellules[i][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
 
-                if (cellules[i][j + 1].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
+                    if (cellules[i][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    
+                    if (cellules[i + 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    
                 }
-                if (cellules[i + 1][j - 1].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
+                
+                if ( cellules[i][j]==cellules[i][19] ) {
+                    
+                    if (cellules[i - 1][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i - 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+             
                 }
-                if (cellules[i - 1][j].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
+                
+                if ( cellules [i][j]== cellules[9][j] ) {
+                    
+                    if (cellules[i - 1][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+
+                    if (cellules[i][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+
+                    if (cellules[i - 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+
+                    if (cellules[i - 1][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    } 
                 }
-                if (cellules[i + 1][j].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
-                }
-                if (cellules[i + 1][j + 1].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
-                }
-                if (cellules[i - 1][j + 1].presenceMines() == true) {
-                    cellules[i][j].mines_en_contact++;
-                }
+                
+                else {
+                    if (cellules[i - 1][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+
+                    if (cellules[i][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j - 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i - 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i + 1][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                    if (cellules[i - 1][j + 1].presenceMines() == true) {
+                        cellules[i][j].mines_en_contact++;
+                    }
+                }               
 
             }
         }
