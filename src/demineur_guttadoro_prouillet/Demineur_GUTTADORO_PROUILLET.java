@@ -19,7 +19,8 @@ public class Demineur_GUTTADORO_PROUILLET {
         Joueur Lorraine = new Joueur("Lorraine");
         Lorraine.obtenirKits();
         Lorraine.utiliserKits();
-        
+        Grille uneGrille = new Grille();
+        uneGrille.afficherGrilleSurConsole();
     }
     
 }
