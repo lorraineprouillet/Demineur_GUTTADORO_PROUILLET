@@ -15,6 +15,10 @@ public class Demineur_GUTTADORO_PROUILLET {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        //Tests méthodes Joueur:
+        Joueur Lorraine = new Joueur("Lorraine");
+        Lorraine.obtenirKits();
+        Lorraine.utiliserKits();
     }
     
 }
