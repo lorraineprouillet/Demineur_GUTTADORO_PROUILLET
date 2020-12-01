@@ -58,6 +58,42 @@ public class Grille {
         }
     }
         
+   public void  afficherGrilleSurConsole ( ) {
+        //Affichage des colonnes en haut de la matrice pour permettre une meilleure lecture
+        System.out.println("\n" +"1 2 3 4 5 6 7 8 9 10");
         
+        for ( int i=20 ; i>= 0 ; i--) {
+            
+            for ( int j=0 ; j<=20 ; j++ ) {
+               
+                if  ( cellules[i][j].j == null ) {
+                    if ( cellules[i][j].trouNoir == true) {
+                        System.out.print("T ");
+                    // T corresponds à un trou noir
+                    }else if ( Cellules[i][j].desintegrateur == true) {
+                        System.out.print("D ");
+                    // D corresponds a un désintégrateur
+                    } else {
+                        System.out.print("V ");
+                    //V corresponds à  case vide
+                    }
+                } else {
+                    
+                    if (Cellules[i][j].jetonCourant.lireCouleur() == "rouge") {
+                        System.out.print("R " );      
+                    }
+                    if (Cellules[i][j].jetonCourant.lireCouleur() == "jaune") {
+                        System.out.print("J " );
+                    }
+                    
+                 
+                  // Si c'est aucune des précédentes cases, c'est donc forcément un jeton
+                  // jetonCourant est de type jeton et un jeton a pour attribut une couleur
+                } //(On lit sa couleur est affiche R ou J en fonction)
+                if (j==6) {
+                      System.out.print("\n");
+                }
+            }
+        }     
         
 }
