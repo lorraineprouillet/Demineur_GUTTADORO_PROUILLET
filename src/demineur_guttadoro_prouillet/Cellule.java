@@ -17,6 +17,7 @@ public class Cellule {
     boolean Kits;
     boolean Mines;
     int mines_en_contact;
+    boolean visible;
     
 
     //Constructeur
@@ -25,6 +26,7 @@ public class Cellule {
         Kits = false;
         Mines=false;
         mines_en_contact = 0 ;
+        visible = false;
     }
     
     public boolean presenceKits () {
@@ -53,7 +55,14 @@ public class Cellule {
         }
     }
         
-    
+    public boolean rendrevisible () { 
+        if ( visible = true ) {
+            return false;
+        } else {
+            return true;
+        }
+        
+    }
 }
 
    

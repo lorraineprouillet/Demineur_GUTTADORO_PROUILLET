@@ -11,4 +11,15 @@ package demineur_guttadoro_prouillet;
  */
 public class Grille {
     
+    Cellule[][] cellules = new Cellule[20][10]; //on génère notre grille en choisissant une taille 
+    
+    public Grille () {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                cellules[i][j] = new Cellule(); // initialise chaque cellules de notre grille avec objet cellule
+            }
+        }
+    }
+    
+    
 }
