@@ -65,7 +65,7 @@ public class Cellule {
     }
     
     public boolean etrevisible () {
-        if ( visible = true ) {
+        if ( visible == true ) {
             return true;
             
         } else {

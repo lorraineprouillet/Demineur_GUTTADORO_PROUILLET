@@ -49,7 +49,7 @@ public class Joueur {
     public boolean utiliserKits () {
         if (NbKitsDeminage>0) { //Si le joueur en possède il peut en utiliser un
             NbKitsDeminage--; //Son nombre est donc décrementé
-            System.out.println("Kits bien utilisé, plus que "+ NbKitsDeminage+ " restants");
+            System.out.println("Kit bien utilisé, plus que "+ NbKitsDeminage+ " restants");
             return true; 
         }
         else { 
