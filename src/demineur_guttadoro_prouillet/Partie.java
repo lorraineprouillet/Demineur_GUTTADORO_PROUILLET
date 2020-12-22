@@ -80,22 +80,22 @@ public void debuterPartie() {
      
     }
     
-}
+
 
 public void initialiserPartie() {
     
-    for(int i=0;i<50;i++) {​​
-    int x=(int)(Math.random()*((9-1)));
-    int y=(int)(Math.random()*((19-1)));
-    grillePartie.placerMines(x,y);
-    }​​
+    for(int i=0;i<50;i++) {
+        int x=(int)(Math.random()*((9-1)));
+        int y=(int)(Math.random()*((19-1)));
+        grillePartie.placerMines(x,y);
+    }
 
-    for (int i=0; i<10;i++) {​​
-    int x=(int)(Math.random()*((9-1)));
-    int y=(int)(Math.random()*((19-1)));
-    grillePartie.placerKits(x,y);
+    for(int j=0; j<10;j++) {
+        int x=(int)(Math.random()*((9-1)));
+        int y=(int)(Math.random()*((19-1)));
+        grillePartie.placerKits(x,y);
 
-    }​​
+    }
     
 }
 
