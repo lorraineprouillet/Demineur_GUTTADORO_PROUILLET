@@ -172,7 +172,7 @@ public class Grille {
 
         for (int i = 0; i < 10; i++) {
             if (i==9) {
-                System.out.print((i+1+"| "));
+                System.out.print((i+1+"| ")); 
             } else {
                 System.out.print((i+1+" | "));
             }
