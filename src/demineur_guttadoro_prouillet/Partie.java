@@ -38,7 +38,7 @@ public void debuterPartie() {
                 
                 Scanner sca = new Scanner(System.in);
                 System.out.println("Veuillez choisir une ligne ");
-                int ligne  = sca.nextInt() ;  //Le joueur choisi sa colonne de jeu
+                int ligne  = sca.nextInt() ;  //Le joueur choisi sa ligne de jeu
                 
                 Scanner scc = new Scanner(System.in);
                 System.out.println("Veuillez choisir une colone ");
@@ -74,7 +74,7 @@ public void debuterPartie() {
 // tant que le  joueur n'a  pas gagné la partie on affiche le menu et on continue la partie 
         if ( joueurCourant.NbVieRestante < 1 ) {
             System.out.println (" vous n'avez plus de vies la partie est fini ");
-        }
+        } //termine automatiquement la partie pour le joueur si il n'a plus de vie
         
         if (grillePartie.etreGagnant(joueurCourant) == true ) {
             // il faut qu'on arrete le chrono
@@ -95,7 +95,7 @@ public void initialiserPartie() {
         int x=(int)(Math.random()*((9-1)));
         int y=(int)(Math.random()*((19-1)));
         grillePartie.placerMines(x,y);
-    }
+    } //placement aléatoire des mines en fonction d'un x et y aléatoires
 
     for(int j=0; j<10;j++) {
         int x=(int)(Math.random()*((9-1)));

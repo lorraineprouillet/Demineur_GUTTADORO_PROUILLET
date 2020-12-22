@@ -24,7 +24,7 @@ public class Cellule {
     public Cellule( ) { // initialisation de la cellule sans kits ni mines 
         
         Kits = false;
-        Mines=false;
+        Mines = false;
         mines_en_contact = 0 ;
         visible = false;
     }
@@ -38,17 +38,17 @@ public class Cellule {
     }
     
     public boolean presenceMines () {
-        if ( Mines == true ) {
-            return true;
-        } else {
+        if ( Mines == false ) { 
             return false;
+        } else {
+            return true;
         }
     }
        
     public boolean recupererKits () {
         //On tombe sur un kit et désire le récupérer
         if ( Kits == true ) { //S'il y en a un sur la case, booléen vrai
-            Kits=false;  //On l'enlève et le booléen devient faux
+            Kits = false;  //On l'enlève et le booléen devient faux
             return true; // Renvoie vrai, il a bien était retiré
         } else {
             return false; //Aucun kits présent , renvoie faux.
@@ -56,7 +56,7 @@ public class Cellule {
     }
         
     public boolean rendrevisible () { 
-        if ( visible = true ) {
+        if ( visible == true ) {
             return false;
         } else {
             return true;
@@ -76,7 +76,7 @@ public class Cellule {
     
     public boolean placerMines () {
         if ( Mines == false ) { //Vérifie qu'il n'y a pas deja une mine
-            Mines=true; //Place cette mine en rendant le booleen vrai
+            Mines = true; //Place cette mine en rendant le booleen vrai
             return true; // Renvoie vraie, il a était placé
             
         } else {
@@ -92,6 +92,8 @@ public class Cellule {
             return false;
         }
     }
+    
+    
 }
 
    
