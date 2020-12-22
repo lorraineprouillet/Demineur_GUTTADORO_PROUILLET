@@ -57,24 +57,24 @@ public void debuterPartie() {
                 
                 
                 //On dévoile alors la case voulue 
-                while (grillePartie.ajouterJetondansColonne(jetonCourant , colonne ) == false ) {
-                    System.out.println(" la colonne est pleine, saisissez en une autre ");
-                    //Si jamais cette colonne est remplie, on demande de changer
-                    colonne = sca.nextInt();
-                    grillePartie.ajouterJetondansColonne(jetonCourant , colonne );
+                while (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
+                    System.out.println(" la case est déjà dévoilée, saisissez en une autre ");
+                    //Si la case a déjà été dévoilée il faut en saisir une autre 
+                    ligne = sca.nextInt(); 
+                    colonne = scc.nextInt();
+                    grillePartie.rendreVisibleCellule(ligne , colonne );
                 }
+                
                 grillePartie.afficherGrilleSurConsole(); //On affiche aprés avoir effectué l'action
-                joueurCourant = JoueurSuivant(joueurCourant);
-            } //Enfin on change de joueur et recommence ce déroulement
+              
+            } 
             
-        } while ( grillePartie.etreGagnantePourJoueur(joueurCourant) == false ); 
-// tant que aucun joueur n'a gagné la partie on affiche le menu et on continue les tours de jeu
-        if (grillePartie.etreGagnantePourJoueur(joueurCourant) == true || grillePartie.etreRemplie()) {
-            System.out.println("Fin de la partie"); //Si la grille est remplie il est temps d'arreter
-            if (grillePartie.etreGagnantePourJoueur(joueurCourant) == true) {
-                System.out.println("Gagné pour le joueur "+ joueurCourant.Nom);
-              // on affiche le nom de la gagnante lorsqu'un des joueur a aligné 4 pions
-            }
+        } while ( grillePartie.etreGagnant(joueurCourant) == false ); 
+        
+// tant que le  joueur n'a  pas gagné la partie on affiche le menu et on continue la partie 
+        if (grillePartie.etreGagnant(joueurCourant) == true ) {
+            // il faut qu'on arrete le chrono
+            System.out.println("Fin de la partie"); //
             
         }   
      
@@ -84,6 +84,9 @@ public void debuterPartie() {
 
 public void initialiserPartie() {
     
+    grillePartie.viderGrille(); // on vide la grille a chaque début de partie ( cases invisbles et pas de kits et de bombes ) 
+    
+    // on place les mines et les kits de facon aléatoire dans la grille : 
     for(int i=0;i<50;i++) {
         int x=(int)(Math.random()*((9-1)));
         int y=(int)(Math.random()*((19-1)));
