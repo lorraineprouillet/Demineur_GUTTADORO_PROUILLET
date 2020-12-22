@@ -218,4 +218,26 @@ public class Grille {
         }
 
     }
+    
+    public boolean placerMines(int x, int y) {
+        if (cellules[y][x].presenceMines()== false ) { //Si l'action de placer la mine est faisable
+            cellules[y][x].Mines = true;
+            return true;//L'action a été faite on renvoie vrai
+           
+        } else {
+            return false; //Faux sinon
+        }
+    }
+    
+    public boolean placerKits(int x, int y) { //Meme principe que les mines
+       if (cellules[y][x].presenceKits() == false) { //Si l'action de placer le kit est faisable
+           cellules[y][x].Kits= true;
+           return true;//L'action a été faite on renvoie vrai
+           
+        } else {
+           return false; //Faux sinon
+        } 
+    }
 }
+
+

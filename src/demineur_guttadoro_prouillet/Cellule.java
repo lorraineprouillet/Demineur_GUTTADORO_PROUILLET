@@ -73,6 +73,25 @@ public class Cellule {
         }
     
     }
+    
+    public boolean placerMines () {
+        if ( Mines == false ) { //Vérifie qu'il n'y a pas deja une mine
+            Mines=true; //Place cette mine en rendant le booleen vrai
+            return true; // Renvoie vraie, il a était placé
+            
+        } else {
+            return false;  //Si c'est impossible renvoie faux, pas placé
+        }
+    }
+    
+    public boolean placerKits() { //Meme fonctionnement que les mines
+        if ( Kits == false ) {
+            Kits =true;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
    
