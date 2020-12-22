@@ -5,6 +5,8 @@
  */
 package demineur_guttadoro_prouillet;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Rosanna Guttadoro
@@ -12,7 +14,17 @@ package demineur_guttadoro_prouillet;
 public class Partie {
     Joueur joueurCourant;
     Joueur[] listeJoueursGagnants;
+    Grille grillePartie = new Grille();
+    
+public void debuterPartie() {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Pseudo Joueur : ");
+    Joueur Joueur1 = new  Joueur(sc.nextLine());
+    
+}
+
+public void initialiserPartie() {
     
     
-    
+}
 }
