@@ -184,17 +184,17 @@ public class Grille {
         //Affichage des colonnes en haut de la matrice pour permettre une meilleure lecture
         System.out.println("\n" + "    1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) { // affichage des lignes pour faciliter le jeu
             if (i==9) {
                 System.out.print((i+1+"| ")); 
             } else {
-                System.out.print((i+1+" | "));
+                System.out.print((i+1+" | ")); //meilleure mise en page pour le 10
             }
             
             for (int j = 0; j < 20; j++) {
 
                 if (cellules[i][j].etrevisible() == true) {
-
+                    // si la cellule est visible on affiche sa caractèristiques
                     if (cellules[i][j].presenceMines()) {
                         System.out.print("M  ");
                         // M corresponds à une mine dans la case
@@ -220,8 +220,9 @@ public class Grille {
     }
     
     public boolean placerMines(int x, int y) {
-        if (cellules[y][x].presenceMines()== false ) { //Si l'action de placer la mine est faisable
-            cellules[y][x].Mines = true;
+        if (cellules[x][y].presenceMines()== false && cellules[x][y].presenceKits() == false ) {
+            //Si l'action de placer la mine est faisable, aucunes mines ou kits présents
+            cellules[x][y].Mines = true;
             return true;//L'action a été faite on renvoie vrai
            
         } else {
@@ -230,13 +231,27 @@ public class Grille {
     }
     
     public boolean placerKits(int x, int y) { //Meme principe que les mines
-       if (cellules[y][x].presenceKits() == false) { //Si l'action de placer le kit est faisable
-           cellules[y][x].Kits= true;
+       if (cellules[x][y].presenceKits() == false && cellules[x][y].presenceMines() == false) {
+           //Si l'action de placer le kit est faisable donc aucun kits ou mines deja présentes
+           cellules[x][y].Kits= true; // on le place
            return true;//L'action a été faite on renvoie vrai
            
         } else {
            return false; //Faux sinon
         } 
+    }
+    
+    public boolean rendreVisibleCellule(int x, int y) {
+        if (cellules[x][y].etrevisible() == false) { // si la cellule n'sst pas deja visible
+            cellules[x][y].visible = true ; //la cellule est désormais visible
+            
+            if (cellules[x][y].presenceKits() || cellules[x][y].presenceMines()) {
+                cellules[x][y].mines_en_contact = 0;
+            }
+            return true;
+        } else {
+            return false ; // action impossible
+        }
     }
 }
 
