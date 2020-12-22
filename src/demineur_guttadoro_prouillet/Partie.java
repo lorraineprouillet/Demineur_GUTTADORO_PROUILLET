@@ -69,9 +69,13 @@ public void debuterPartie() {
               
             } 
             
-        } while ( grillePartie.etreGagnant(joueurCourant) == false ); 
+        } while ( grillePartie.etreGagnant(joueurCourant) == false && joueurCourant.NbVieRestante > 0); 
         
 // tant que le  joueur n'a  pas gagné la partie on affiche le menu et on continue la partie 
+        if ( joueurCourant.NbVieRestante < 1 ) {
+            System.out.println (" vous n'avez plus de vies la partie est fini ");
+        }
+        
         if (grillePartie.etreGagnant(joueurCourant) == true ) {
             // il faut qu'on arrete le chrono
             System.out.println("Fin de la partie"); //
