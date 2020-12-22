@@ -12,13 +12,15 @@ package demineur_guttadoro_prouillet;
 public class Grille {
 
     Cellule[][] cellules = new Cellule[10][20]; //on génère notre grille en choisissant une taille 
-
+    int nbcaserestantes;
+    
     public Grille() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 20; j++) {
                 cellules[i][j] = new Cellule(); // initialise chaque cellules de notre grille avec objet cellule
             }
         }
+        nbcaserestantes = 200;
     }
     
     public void viderGrille ( ) {
@@ -198,7 +200,7 @@ public class Grille {
                     if (cellules[i][j].presenceMines()) {
                         System.out.print("M  ");
                         // M corresponds à une mine dans la case
-                    } else if (cellules[i][j].Kits == true) {
+                    } else if (cellules[i][j].presenceKits()) {
                         System.out.print("K  ");
                         // K corresponds a un kits de déminage
                     } else {
@@ -242,17 +244,24 @@ public class Grille {
     }
     
     public boolean rendreVisibleCellule(int x, int y) {
-        if (cellules[x][y].etrevisible() == false) { // si la cellule n'sst pas deja visible
-            cellules[x][y].visible = true ; //la cellule est désormais visible
-            
-            if (cellules[x][y].presenceKits() || cellules[x][y].presenceMines()) {
-                cellules[x][y].mines_en_contact = 0;
-            }
+        if (cellules[x-1][y-1].etrevisible() == false) { // si la cellule n'sst pas deja visible
+            // prise en compte du décalage avec le -1
+            cellules[x-1][y-1].visible = true ; //la cellule est désormais visible
+            nbcaserestantes--;
             return true;
         } else {
             return false ; // action impossible
         }
     }
+    
+    public boolean etreGagnant(Joueur Joueur1) {
+        if (nbcaserestantes == 50) {
+            return true; 
+        } else {
+            return false ;
+        }
+    }
 }
+
 
 
