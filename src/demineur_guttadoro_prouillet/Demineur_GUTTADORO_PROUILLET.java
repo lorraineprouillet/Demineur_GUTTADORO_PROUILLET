@@ -21,7 +21,10 @@ public class Demineur_GUTTADORO_PROUILLET {
         Lorraine.utiliserKits();
         Grille uneGrille = new Grille();
         uneGrille.afficherGrilleSurConsole(); //on affiche la grille de jeu
-        
+        uneGrille.placerMines(2, 15);
+        uneGrille.rendreVisibleCellule(2,15);
+        uneGrille.rendreVisibleCellule(2,16);
+        uneGrille.afficherGrilleSurConsole();
     }
     
 }
