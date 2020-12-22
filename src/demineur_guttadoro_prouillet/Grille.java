@@ -21,6 +21,20 @@ public class Grille {
         }
     }
     
+    public void viderGrille ( ) {
+        //Pour une nouvelle partie on souhaite vider la grille
+        for ( int i=0 ; i < 10 ; i++ ) {
+            //On parcours encore une fois toute la grille
+            for ( int j=0 ; j<20; j++ ) {
+                //Pour chaque cellule on la rend invisible, on supprime les ktis et les mines 
+                cellules[i][j].visible = false;
+                cellules[i][j].Kits = false;
+                cellules[i][j].Mines = false;
+                                       
+            }
+                       
+        }       
+    }
         
     public void initialiser_mines_en_contact () { 
         for (int i=0;i<10;i++) {
