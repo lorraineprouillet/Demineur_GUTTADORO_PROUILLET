@@ -83,12 +83,12 @@ public class Grille {
                     if (cellules[i - 1][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     }  //diagonale superieure a droite
-                    
+                    break;
                 }
                 
                 if ( cellules[i][j]==cellules[0][j]) {
                      // meme raisonnement qu'avant, on observe le contour supérieur cad la 1ere ligne
-                   //il sera inutil de vérifier en haut et les deux diagonales supérieures
+                   //il sera inutile de vérifier en haut et les deux diagonales supérieures
                     if (cellules[i][j - 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     } //gauche
@@ -106,7 +106,7 @@ public class Grille {
                     if (cellules[i + 1][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     } // diag inferieure droite
-                    
+                    break;
                 }
                 
                 if ( cellules[i][j]==cellules[i][19] ) {
@@ -128,7 +128,7 @@ public class Grille {
                     if (cellules[i + 1][j].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     } // au dessus
-             
+                    break;
                 }
                 
                 if ( cellules [i][j]== cellules[9][j] ) {
@@ -152,34 +152,37 @@ public class Grille {
                     if (cellules[i - 1][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     } // diag superieure droite
+                    break;
                 }
                 
                 else { // le else verifie chaque case autour de la cellule voulue sans réstrictions
                     if (cellules[i - 1][j - 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } //diag sup gauche
                     if (cellules[i][j - 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } // gauche
 
                     if (cellules[i][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } // droite
+                    
                     if (cellules[i + 1][j - 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } // diag inf gauche
                     if (cellules[i - 1][j].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                        System.out.print("Une bombe remarquée");
+                    } // en haut 
                     if (cellules[i + 1][j].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } // en dessous
                     if (cellules[i + 1][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } // diag inf droite
                     if (cellules[i - 1][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                    }
+                    } // diag sup droite
                 }               
 
             }
@@ -259,6 +262,25 @@ public class Grille {
         }
     }
     
+    public boolean recupererKitsSurCase (int x, int y) {
+        //On tombe sur un kit et désire le récupérer
+        if ( cellules[x][y].Kits == true ) { //S'il y en a un sur la case, booléen vrai
+            cellules[x][y].Kits = false;  //On l'enlève et le booléen devient faux
+            return true; // Renvoie vrai, il a bien était retiré
+        } else {
+            return false; //Aucun kits présent , renvoie faux.
+        }
+    }
+    
+    public boolean desamorcerMines(int x, int y) {
+        //On désire utiliser un kit sur une certaine case 
+        if (cellules[x][y].presenceMines()== true ) { //Si il ya bien une mine sur la case
+            cellules[x][y].Mines = false;  // On la désactive en false
+            return true; // Action faite on renvoie vrai
+        } else {
+            return false; // Sinon renvoie false 
+        }
+    }
     public boolean etreGagnant(Joueur Joueur1) {
         if (nbcaserestantes == 50) { //Nous avons placé en tout 50 Mines sur 200 cases
             //Ainsi, lorsque le nombre de case restantes est à 50 on sait que toutes les cases non minés sont découvertes

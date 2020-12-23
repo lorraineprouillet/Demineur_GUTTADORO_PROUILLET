@@ -22,11 +22,15 @@ public class Demineur_GUTTADORO_PROUILLET {
         Grille uneGrille = new Grille();
         uneGrille.afficherGrilleSurConsole(); //on affiche la grille de jeu
         uneGrille.placerMines(2,15);
-        uneGrille.rendreVisibleCellule(2,15);
+        uneGrille.rendreVisibleCellule(3,16);
         uneGrille.rendreVisibleCellule(2,16);
         uneGrille.placerKits(2,3);
-        uneGrille.rendreVisibleCellule(2,3);
+        uneGrille.rendreVisibleCellule(3,4);
+        uneGrille.recupererKitsSurCase(2,3);
+        uneGrille.initialiser_mines_en_contact();
+        //uneGrille.desamorcerMines(2,15);
         uneGrille.afficherGrilleSurConsole();
+        
     }
     
 }
