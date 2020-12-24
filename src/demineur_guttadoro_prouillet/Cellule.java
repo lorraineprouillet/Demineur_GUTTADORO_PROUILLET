@@ -38,10 +38,10 @@ public class Cellule {
     }
     
     public boolean presenceMines () {
-        if ( Mines == false ) { 
-            return false;
-        } else {
+        if ( Mines == true ) { 
             return true;
+        } else {
+            return false;
         }
     }
        

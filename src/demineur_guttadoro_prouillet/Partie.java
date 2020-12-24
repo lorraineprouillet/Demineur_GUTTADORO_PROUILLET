@@ -38,20 +38,20 @@ public void debuterPartie() {
                 
                 Scanner sca = new Scanner(System.in);
                 System.out.println("Veuillez choisir une ligne ");
-                int ligne  = sca.nextInt() ;  //Le joueur choisi sa ligne de jeu
+                int ligne  = sca.nextInt() -1;  //Le joueur choisi sa ligne de jeu
                 
                 Scanner scc = new Scanner(System.in);
                 System.out.println("Veuillez choisir une colone ");
-                int colonne = scc.nextInt();
+                int colonne = scc.nextInt()-1;
                 
                 while ( ligne > 10 && ligne < 1) {
                     System.out.println(" veuillez saisir une ligne valide ");
-                    ligne = sca.nextInt(); //Si jamais il donne une mauavaise ligne 
+                    ligne = sca.nextInt()-1; //Si jamais il donne une mauavaise ligne 
                 }
                 
                 while ( colonne > 20 && colonne < 1) {
                     System.out.println(" veuillez saisir une colonne valide ");
-                    colonne = scc.nextInt(); //Si jamais il donne une mauavaise colonne
+                    colonne = scc.nextInt()-1; //Si jamais il donne une mauavaise colonne
                 }
                 
                 
@@ -60,8 +60,8 @@ public void debuterPartie() {
                 while (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
                     System.out.println(" la case est déjà dévoilée, saisissez en une autre ");
                     //Si la case a déjà été dévoilée il faut en saisir une autre 
-                    ligne = sca.nextInt(); 
-                    colonne = scc.nextInt();
+                    ligne = sca.nextInt() - 1; 
+                    colonne = scc.nextInt() - 1;
                     grillePartie.rendreVisibleCellule(ligne , colonne );
                 }
                 

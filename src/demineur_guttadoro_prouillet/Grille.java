@@ -252,9 +252,9 @@ public class Grille {
     }
     
     public boolean rendreVisibleCellule(int x, int y) {
-        if (cellules[x-1][y-1].etrevisible() == false) { // si la cellule n'sst pas deja visible
-            // prise en compte du décalage avec le -1
-            cellules[x-1][y-1].visible = true ; //la cellule est désormais visible
+        if (cellules[x][y].etrevisible() == false) { // si la cellule n'sst pas deja visible
+            
+            cellules[x][y].visible = true ; //la cellule est désormais visible
             nbcaserestantes--;
             return true;
         } else {
