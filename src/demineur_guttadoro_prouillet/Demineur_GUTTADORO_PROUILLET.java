@@ -26,6 +26,8 @@ public class Demineur_GUTTADORO_PROUILLET {
         //uneGrille.rendreVisibleCellule(2,16);
         uneGrille.placerKits(2,3);
         uneGrille.placerMines(0,9);
+        uneGrille.placerMines(2,16);
+        uneGrille.placerMines(3,15);
         for (int i=0;i<10;i++) {
             for(int j=0;j<20;j++) {
                 uneGrille.rendreVisibleCellule(i,j);
