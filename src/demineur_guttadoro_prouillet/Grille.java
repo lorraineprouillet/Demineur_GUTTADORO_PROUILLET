@@ -39,123 +39,14 @@ public class Grille {
     }
         
     public void initialiser_mines_en_contact () { 
-        for (int i=0;i<10;i++) {
-            for(int j=0;j<20;j++) {
+        for (int i=1;i<9;i++) {
+            for(int j=1;j<19;j++) {
+                
                 //en analysant la structure de notre grille nous avons choisi de simplifier 
                 //les cases des coins avec un affichage constant à 0
-                if ( cellules[i][j]==cellules[0][0]) {
-                    cellules[i][j].mines_en_contact=0;
-                    break;
-                } //coin sup gauche
-                
-                if ( cellules[i][j]==cellules[9][19]) {
-                    cellules[i][j].mines_en_contact=0;
-                    break;
-                } // coin inf droit
-                
-                if ( cellules[i][j]==cellules[9][0]) {
-                    cellules[i][j].mines_en_contact=0;
-                    break;
-                } //coin inf gauche
-                
-                if ( cellules[i][j]==cellules[0][19]) {
-                    cellules[i][j].mines_en_contact=0;
-                    break;
-                } //coin sup droit
                 
                 
-                if ( cellules[i][j] == cellules [i][0]) {
-                    // on regarde maintenant les cellules des contours, ici a 1ere colonne gauche
-                    //on ne regardera donc pas a gauche ni dans les diagonales gauches(hautes et basses)
-                    if (cellules[i][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // si une mine est présente a sa droite on incrémente
-
-                    if (cellules[i - 1][j].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //si une mine est présente en dessous on incremente
-                    if (cellules[i + 1][j].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //au dessus
-                    if (cellules[i + 1][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //diagonale inferieure a droite
-                    if (cellules[i - 1][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    }  //diagonale superieure a droite
-                    break;
-                }
-                
-                if ( cellules[i][j]==cellules[0][j]) {
-                     // meme raisonnement qu'avant, on observe le contour supérieur cad la 1ere ligne
-                   //il sera inutile de vérifier en haut et les deux diagonales supérieures
-                    if (cellules[i][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //gauche
-
-                    if (cellules[i][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //droite
-                    if (cellules[i + 1][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //diag inférieure gauche
-                    
-                    if (cellules[i + 1][j].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //en dessous
-                    if (cellules[i + 1][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // diag inferieure droite
-                    break;
-                }
-                
-                if ( cellules[i][j]==cellules[i][19] ) {
-                    //encore une fois le meme fonctionnement mais avec le contour droit
-                    // pas nécessaire de regarder a droite et les diagonales droites
-                    
-                    if (cellules[i - 1][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } //diag sup gauche
-                    if (cellules[i][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // gauche
-                    if (cellules[i + 1][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // diag inf gauche
-                    if (cellules[i - 1][j].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // en dessous
-                    if (cellules[i + 1][j].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // au dessus
-                    break;
-                }
-                
-                if ( cellules [i][j]== cellules[9][j] ) {
-                    //enfin , dernier contour inferieur//
-                    // on ne regarde pas en dessous ni les digonales inferieures
-                    if (cellules[i - 1][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // diag sup gauche
-                    if (cellules[i][j - 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // a gauche
-
-                    if (cellules[i][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // a droite
-
-                    if (cellules[i - 1][j].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // au dessus
-
-                    if (cellules[i - 1][j + 1].presenceMines() == true) {
-                        cellules[i][j].mines_en_contact++;
-                    } // diag superieure droite
-                    break;
-                }
-                
-                else { // le else verifie chaque case autour de la cellule voulue sans réstrictions
+                //else { // le else verifie chaque case autour de la cellule voulue sans réstrictions */
                     if (cellules[i - 1][j - 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     } //diag sup gauche
@@ -183,10 +74,129 @@ public class Grille {
                     if (cellules[i - 1][j + 1].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
                     } // diag sup droite
-                }               
+                //}               
 
             }
         }
+        
+        for (int k=0;k<10;k++) {
+            for(int j=0;j<20;j++) {
+                
+                if ( cellules[k][j]==cellules[0][0]) {
+                    cellules[k][j].mines_en_contact=0;
+                    
+                } //coin sup gauche
+                
+                else if ( cellules[k][j]==cellules[9][19]) {
+                    cellules[k][j].mines_en_contact=0;
+                    
+                } // coin inf droit
+                
+                else if ( cellules[k][j]==cellules[9][0]) {
+                    cellules[k][j].mines_en_contact=0;
+                    
+                } //coin inf gauche
+                
+                else if ( cellules[k][j]==cellules[0][19]) {
+                    cellules[k][j].mines_en_contact=0;
+                    
+                } //coin sup droit
+                
+                
+                else if ( cellules[k][j] == cellules [k][0]) {
+                    // on regarde maintenant les cellules des contours, ici a 1ere colonne gauche
+                    //on ne regardera donc pas a gauche ni dans les diagonales gauches(hautes et basses)
+                    if (cellules[k][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // si une mine est présente a sa droite on incrémente
+
+                    if (cellules[k - 1][j].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //si une mine est présente en dessous on incremente
+                    if (cellules[k + 1][j].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //au dessus
+                    if (cellules[k + 1][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //diagonale inferieure a droite
+                    if (cellules[k - 1][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    }  //diagonale superieure a droite
+                    
+                }
+                
+                else if ( cellules[k][j]==cellules[0][j]) {
+                     // meme raisonnement qu'avant, on observe le contour supérieur cad la 1ere ligne
+                   //il sera inutile de vérifier en haut et les deux diagonales supérieures
+                    if (cellules[k][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //gauche
+
+                    if (cellules[k][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //droite
+                    if (cellules[k + 1][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //diag inférieure gauche
+                    
+                    if (cellules[k + 1][j].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //en dessous
+                    if (cellules[k + 1][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // diag inferieure droite
+                    
+                }
+                
+                else if ( cellules[k][j]==cellules[k][19] ) {
+                    //encore une fois le meme fonctionnement mais avec le contour droit
+                    // pas nécessaire de regarder a droite et les diagonales droites
+                    
+                    if (cellules[k - 1][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } //diag sup gauche
+                    if (cellules[k][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // gauche
+                    if (cellules[k + 1][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // diag inf gauche
+                    if (cellules[k - 1][j].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // en dessous
+                    if (cellules[k + 1][j].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // au dessus
+                    
+                }
+                
+                else if ( cellules [k][j]== cellules[9][j] ) {
+                    //enfin , dernier contour inferieur//
+                    // on ne regarde pas en dessous ni les digonales inferieures
+                    if (cellules[k - 1][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // diag sup gauche
+                    if (cellules[k][j - 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // a gauche
+
+                    if (cellules[k][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // a droite
+
+                    if (cellules[k - 1][j].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // au dessus
+
+                    if (cellules[k - 1][j + 1].presenceMines() == true) {
+                        cellules[k][j].mines_en_contact++;
+                    } // diag superieure droite
+                    
+                }
+           
+            }
+         }
+         
     }
 
     public void afficherGrilleSurConsole() {
