@@ -63,7 +63,7 @@ public class Grille {
                     } // diag inf gauche
                     if (cellules[i - 1][j].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
-                        System.out.print("Une bombe remarquée");
+                        //System.out.print("Une bombe remarquée");
                     } // en haut 
                     if (cellules[i + 1][j].presenceMines() == true) {
                         cellules[i][j].mines_en_contact++;
@@ -220,6 +220,9 @@ public class Grille {
                     } else if (cellules[i][j].presenceKits() == true) {
                         System.out.print("K  ");
                         // K corresponds a un kits de déminage
+                    } else if (cellules[i][j].drapeau == true) {
+                        System.out.print("D  ");
+                        // D corresponds a un drapeau de signalisation de mines
                     } else if (cellules[i][j].presenceMines() == false && cellules[i][j].presenceKits() == false) {
                         System.out.print(cellules[i][j].mines_en_contact+"  ");
                         //Cela correspondra à son nombre de mines en contact
@@ -242,7 +245,7 @@ public class Grille {
         if (cellules[x][y].presenceMines()== false && cellules[x][y].presenceKits() == false ) {
             //Si l'action de placer la mine est faisable, aucunes mines ou kits deja présents
             cellules[x][y].Mines = true; //On la place
-            System.out.print("Bombe placée!");
+            //System.out.print("Bombe placée!");
             return true;//L'action a été faite on renvoie vrai
            
         } else {
@@ -290,6 +293,17 @@ public class Grille {
         } else {
             return false; // Sinon renvoie false 
         }
+    }
+    
+    public boolean placerDrapeau(int x, int y) { 
+       if (cellules[x][y].drapeau == false ) {
+           //Si l'action de placer le drapeau est faisable 
+           cellules[x][y].drapeau = true; // on le place
+           return true;//L'action a été faite on renvoie vrai
+           
+        } else {
+           return false; //Faux sinon
+        } 
     }
     public boolean etreGagnant(Joueur Joueur1) {
         if (nbcaserestantes == 50) { //Nous avons placé en tout 50 Mines sur 200 cases

@@ -18,7 +18,7 @@ public class Cellule {
     boolean Mines;
     int mines_en_contact;
     boolean visible;
-    
+    boolean drapeau;
 
     //Constructeur
     public Cellule( ) { // initialisation de la cellule sans kits ni mines 
@@ -27,6 +27,7 @@ public class Cellule {
         Mines = false;
         mines_en_contact = 0 ;
         visible = false;
+        drapeau = false;
     }
     
     public boolean presenceKits () {
