@@ -15,8 +15,9 @@ public class Joueur {
     
     // def des attributs:
     String Nom; //Le joueur a un nom 
-    Timer tempsJoueur = new Timer();
-    Timer temps = new Timer();//Permettra de classer les joueurs selon leur temps
+    Long tempsJoueur;
+    Long tempsStart ;//Permettra de classer les joueurs selon leur temps
+    Long tempsFin;
     int NbKitsDeminage ; // Nombre kits pouvant être utilisé
     int NbVieRestante; // Nombre de vie qui permet au joueur de ne pas perdre à la premiere mine trouvée
     int NbCasesDecouvertes; // Permettra de se situer dans le jeu
@@ -27,17 +28,18 @@ public class Joueur {
         NbKitsDeminage = 0;
         NbCasesDecouvertes = 0;
         
+        
     }
      public boolean DeclencherChrono () { // Cette fonction va permettre d'obtenir le temps mis
-        temps.start();
-        //.out.println(temps.start());
+        tempsStart = System.currentTimeMillis();
         return true;
        
     }
     
     public boolean ArreterChrono() { //Temps de fin du joueur
-        temps.stop();
-        //tempsJoueur = (temps.start()-temps.stop());
+        tempsFin = System.currentTimeMillis();
+        tempsJoueur = tempsFin - tempsStart;
+        System.out.println("Durée de la partie = " +tempsJoueur +"ms");
         return true;
     } 
     
@@ -49,7 +51,7 @@ public class Joueur {
     public boolean utiliserKits () {
         if (NbKitsDeminage>0) { //Si le joueur en possède il peut en utiliser un
             NbKitsDeminage--; //Son nombre est donc décrementé
-            System.out.println("Kit bien utilisé, plus que "+ NbKitsDeminage+ " restants");
+            //System.out.println("Kit bien utilisé, plus que "+ NbKitsDeminage+ " restants");
             return true; 
         }
         else { 

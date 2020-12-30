@@ -1,7 +1,7 @@
 /* reste a faire : 
- * - problèmes avec les whiles qd case deja vues ou pas de kits + continuer la fonction 3 : les drapeaux
- * - permettre le comptage du chrono et affichage de ce chrono a la fin
- * - revoir la maniere de vraiment gagner la partie (comptage des cases décovertes)
+ * - problèmes avec le while quand case deja visible 
+ * - et les whiles si ligne ou colonne superieur a 10/20
+ * 
  */
 package demineur_guttadoro_prouillet;
 
@@ -27,10 +27,11 @@ public void debuterPartie() {
            
             Scanner scs = new Scanner(System.in);
             
-            System.out.print("Que voulez vous faire ? \n"+"1) Cliquer sur une case \n"+"2) utiliser un kit de déminage \n"+"3) définir bombe présumée - pas possible actuellement \n");
+            System.out.print("Que voulez vous faire ? \n"+"1) Cliquer sur une case \n"+"2) Utiliser un kit de déminage \n"+"3) Définir bombe présumée \n");
             int choix = scs.nextInt();
-            if  ( choix != 1 && choix != 2 ) { 
-                System.out.println("saisissez un choix valide");
+            joueurCourant.DeclencherChrono(); //On débute le chronomètre du joueur
+            if  ( choix != 1 && choix != 2 && choix != 3) { 
+                System.out.println("Saisissez un choix valide");
                 choix = scs.nextInt();
                 // si le choix n'est pas valide il doit le re saisir 
                 
@@ -55,15 +56,18 @@ public void debuterPartie() {
                 }
                 
                 
-                
+                //grillePartie.rendreVisibleCellule(ligne , colonne );
                 //On dévoile alors la case voulue 
+                
                 while (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
-                    System.out.println(" la case est déjà dévoilée, saisissez en une autre ");
+                    System.out.println("La case est déjà dévoilée, saisissez en une autre ");
                     //Si la case a déjà été dévoilée il faut en saisir une autre 
                     ligne = sca.nextInt() - 1; 
                     colonne = scc.nextInt() - 1;
                     grillePartie.rendreVisibleCellule(ligne , colonne );
-                }
+                } 
+                
+                grillePartie.afficherGrilleSurConsole(); //On affiche aprés avoir effectué l'action
                 
                 if (grillePartie.cellules[ligne][colonne].presenceMines() == true) {
                     joueurCourant.PerdreVie(); //décrémente le nb de vie du joueur
@@ -75,10 +79,10 @@ public void debuterPartie() {
                     grillePartie.cellules[ligne][colonne].recupererKits();
                     System.out.println("\n"+"Bravo! Vous venez de gagner un kit de déminage");
                 }
-                grillePartie.afficherGrilleSurConsole(); //On affiche aprés avoir effectué l'action
+                
               
             } else if ( choix == 2 && joueurCourant.NbKitsDeminage > 0) {
-                //Si le joueur décide de récuperer un kit (il est nécessaire d'en possèder au moins 1)
+                //Si le joueur décide d'utiliser un kit (il est nécessaire d'en possèder au moins 1)
                 Scanner sca = new Scanner(System.in);
                 System.out.println("Veuillez choisir une ligne ");
                 int ligne  = sca.nextInt() -1;  //Le joueur choisi sa ligne de jeu
@@ -98,30 +102,52 @@ public void debuterPartie() {
                 }
                 
                 
+                grillePartie.desamorcerMines(ligne , colonne );
+                //On supprime la mine sur la case si il y en a une, si il n'y en avait pas, le kits est quand meme perdu  
+                joueurCourant.utiliserKits();
+                System.out.println("Il vous reste "+ joueurCourant.NbKitsDeminage+" Kits");
+                grillePartie.afficherGrilleSurConsole();
                 
+            }  else if ( choix == 3 ) {
+                //Si le joueur décide de marquer d'un drapeau la présence d'une mine 
+                Scanner sca = new Scanner(System.in);
+                System.out.println("Veuillez choisir une ligne ");
+                int ligne  = sca.nextInt() -1;  
                 
-                while (grillePartie.desamorcerMines(ligne , colonne ) == false) {
-                    System.out.println("Cette case ne contient pas de mine à désamorcer, saisissez en une autre ");
-                    //Si la case a déjà été dévoilée il faut en saisir une autre 
-                    ligne = sca.nextInt() - 1; 
-                    colonne = scc.nextInt() - 1;
-                    grillePartie.desamorcerMines(ligne , colonne );
+                Scanner scc = new Scanner(System.in);
+                System.out.println("Veuillez choisir une colone ");
+                int colonne = scc.nextInt()-1;
+                
+                while ( ligne > 10 && ligne < 1) {
+                    System.out.println(" veuillez saisir une ligne valide ");
+                    ligne = sca.nextInt()-1; //Si jamais il donne une mauavaise ligne 
                 }
                 
-            System.out.println("Il vous reste "+ joueurCourant.NbKitsDeminage+" Kits");
-            grillePartie.afficherGrilleSurConsole();
+                while ( colonne > 20 && colonne < 1) {
+                    System.out.println(" veuillez saisir une colonne valide ");
+                    colonne = scc.nextInt()-1; //Si jamais il donne une mauavaise colonne
+                }
                 
-            }  
+                if (grillePartie.cellules[ligne][colonne].drapeau == false) {
+                    grillePartie.placerDrapeau(ligne,colonne);
+                    //On marque d'un drapeau la case voulue
+                } else {
+                    System.out.println("Raté, il y a deja un drapeau ici");
+                }
+                grillePartie.afficherGrilleSurConsole();
+            }
         } while ( grillePartie.etreGagnant(joueurCourant) == false && joueurCourant.NbVieRestante > 0); 
         
 // tant que le  joueur n'a  pas gagné la partie on affiche le menu et on continue la partie 
         if ( joueurCourant.NbVieRestante < 1 ) {
+            joueurCourant.ArreterChrono();
             System.out.println ("Vous n'avez plus de vies, la partie est finie ");
             
         } //termine automatiquement la partie pour le joueur si il n'a plus de vie
         
         if (grillePartie.etreGagnant(joueurCourant) == true ) {
             // il faut qu'on arrete le chrono + gestion des scores
+            joueurCourant.ArreterChrono();
             System.out.println("Gagné! Fin de la partie"); 
             
         }   

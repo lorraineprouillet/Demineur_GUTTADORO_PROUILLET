@@ -216,20 +216,23 @@ public class Grille {
                     // si la cellule est visible on affiche sa caractèristiques
                     if (cellules[i][j].presenceMines() == true) {
                         System.out.print("M  ");
-                        // M corresponds à une mine dans la case
+                        // M corresponds a une mine
                     } else if (cellules[i][j].presenceKits() == true) {
                         System.out.print("K  ");
                         // K corresponds a un kits de déminage
-                    } else if (cellules[i][j].drapeau == true) {
-                        System.out.print("D  ");
-                        // D corresponds a un drapeau de signalisation de mines
+                      
                     } else if (cellules[i][j].presenceMines() == false && cellules[i][j].presenceKits() == false) {
                         System.out.print(cellules[i][j].mines_en_contact+"  ");
                         //Cela correspondra à son nombre de mines en contact
                     }
                 } else if (cellules[i][j].etrevisible() == false) {
-                    System.out.print("-  ");
+                    if (cellules[i][j].drapeau == true) {
+                        System.out.print("D  "); // D corresponds a un drapeau de signalisation de mines
+                    } else {
+                        System.out.print("-  ");
                     //On utilisera - pour une case qui n'est pas encore révélée
+                    }
+                   
 
                 }
                 if (j == 19) {
@@ -268,7 +271,7 @@ public class Grille {
         if (cellules[x][y].etrevisible() == false) { // si la cellule n'sst pas deja visible
             
             cellules[x][y].visible = true ; //la cellule est désormais visible
-            nbcaserestantes--;
+            nbcaserestantes--; //Une nouvelle case découverte, on abaisse le compteur
             return true;
         } else {
             return false ; // action impossible
@@ -297,7 +300,8 @@ public class Grille {
     
     public boolean placerDrapeau(int x, int y) { 
        if (cellules[x][y].drapeau == false ) {
-           //Si l'action de placer le drapeau est faisable 
+           //Si l'action de placer le drapeau est faisable
+           
            cellules[x][y].drapeau = true; // on le place
            return true;//L'action a été faite on renvoie vrai
            

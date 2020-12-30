@@ -25,25 +25,26 @@ public class Demineur_GUTTADORO_PROUILLET {
         //uneGrille.rendreVisibleCellule(3,16);
         //uneGrille.rendreVisibleCellule(2,16);
         uneGrille.placerKits(2,3);
+        * 
+        *  //On dévoile alors la case voulue 
+                while (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
+                    System.out.println("La case est déjà dévoilée, saisissez en une autre ");
+                    //Si la case a déjà été dévoilée il faut en saisir une autre 
+                    ligne = sca.nextInt() - 1; 
+                    colonne = scc.nextInt() - 1;
+                    grillePartie.rendreVisibleCellule(ligne , colonne );
+                }
+        * 
+        * 
         uneGrille.placerMines(0,9);
         uneGrille.placerMines(2,16);
         uneGrille.placerMines(3,15);
-        for (int i=0;i<10;i++) {
-            for(int j=0;j<20;j++) {
-                uneGrille.rendreVisibleCellule(i,j);
-            }
-        } // affichage complet de la grille pour vérifier la methode des mines en contact
-        uneGrille.recupererKitsSurCase(2,3);
-        uneGrille.initialiser_mines_en_contact();
-        uneGrille.desamorcerMines(2,15);
-        uneGrille.afficherGrilleSurConsole();
         */
         
         Partie PartieDeJeu = new Partie();
-        
         PartieDeJeu.debuterPartie();
         
-               
+        
     }
     
 }
