@@ -59,10 +59,12 @@ public void debuterPartie() {
                 //grillePartie.rendreVisibleCellule(ligne , colonne );
                 //On dévoile alors la case voulue 
                 
-                while (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
+                if (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
                     System.out.println("La case est déjà dévoilée, saisissez en une autre ");
-                    //Si la case a déjà été dévoilée il faut en saisir une autre 
+                    //Si la case a déjà été dévoilée il faut en saisir une autre
+                    System.out.println("saisissez la ligne");
                     ligne = sca.nextInt() - 1; 
+                    System.out.println("saisissez la colonne");
                     colonne = scc.nextInt() - 1;
                     grillePartie.rendreVisibleCellule(ligne , colonne );
                 } 
