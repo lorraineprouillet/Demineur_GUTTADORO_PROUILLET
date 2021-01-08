@@ -52,7 +52,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
 
         PanneauGrille.setBackground(new java.awt.Color(204, 204, 255));
         PanneauGrille.setAlignmentX(5.0F);
-        PanneauGrille.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanneauGrille.setLayout(new java.awt.GridLayout());
 
         PanneauInfo.setBackground(new java.awt.Color(255, 204, 153));
         PanneauInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -95,7 +95,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 2600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -105,7 +105,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanneauGrille, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
