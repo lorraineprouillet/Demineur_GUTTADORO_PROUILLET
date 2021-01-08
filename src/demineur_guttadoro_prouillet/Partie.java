@@ -94,12 +94,12 @@ public void debuterPartie() {
                 int colonne = scc.nextInt()-1;
                 
                 while ( ligne > 10 && ligne < 1) {
-                    System.out.println(" veuillez saisir une ligne valide ");
+                    System.out.println(" Veuillez saisir une ligne valide ");
                     ligne = sca.nextInt()-1; //Si jamais il donne une mauavaise ligne 
                 }
                 
                 while ( colonne > 20 && colonne < 1) {
-                    System.out.println(" veuillez saisir une colonne valide ");
+                    System.out.println(" Veuillez saisir une colonne valide ");
                     colonne = scc.nextInt()-1; //Si jamais il donne une mauavaise colonne
                 }
                 
@@ -118,7 +118,7 @@ public void debuterPartie() {
                 
                 Scanner scc = new Scanner(System.in);
                 System.out.println("Veuillez choisir une colone ");
-                int colonne = scc.nextInt()-1;
+                int colonne = scc.nextInt() -1;
                 
                 while ( ligne > 10 && ligne < 1) {
                     System.out.println(" veuillez saisir une ligne valide ");

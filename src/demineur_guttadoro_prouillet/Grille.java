@@ -272,6 +272,7 @@ public class Grille {
             
             cellules[x][y].visible = true ; //la cellule est désormais visible
             nbcaserestantes--; //Une nouvelle case découverte, on abaisse le compteur
+            System.out.println("Fait");
             return true;
         } else {
             return false ; // action impossible
