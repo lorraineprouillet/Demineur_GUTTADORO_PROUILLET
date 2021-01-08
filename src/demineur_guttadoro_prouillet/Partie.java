@@ -29,7 +29,7 @@ public void debuterPartie() {
             
             System.out.print("Que voulez vous faire ? \n"+"1) Cliquer sur une case \n"+"2) Utiliser un kit de déminage \n"+"3) Définir bombe présumée \n");
             int choix = scs.nextInt();
-            joueurCourant.DeclencherChrono(); //On débute le chronomètre du joueur
+            //joueurCourant.DeclencherChrono(); //On débute le chronomètre du joueur
             if  ( choix != 1 && choix != 2 && choix != 3) { 
                 System.out.println("Saisissez un choix valide");
                 choix = scs.nextInt();
@@ -56,10 +56,10 @@ public void debuterPartie() {
                 }
                 
                 
-                //grillePartie.rendreVisibleCellule(ligne , colonne );
+         
                 //On dévoile alors la case voulue 
                 
-                if (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
+                while (grillePartie.rendreVisibleCellule( ligne , colonne ) == false ) {
                     System.out.println("La case est déjà dévoilée, saisissez en une autre ");
                     //Si la case a déjà été dévoilée il faut en saisir une autre
                     System.out.println("saisissez la ligne");

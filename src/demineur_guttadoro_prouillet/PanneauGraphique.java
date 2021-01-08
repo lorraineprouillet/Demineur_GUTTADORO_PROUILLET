@@ -23,7 +23,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
         
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 20; j++) {
-                CellulesGraphique cellGraph = new CellulesGraphique();
+                CellulesGraphique cellGraph = new CellulesGraphique(grillePartie.cellules[i][j]);
                 PanneauGrille.add(cellGraph);
             }
         }

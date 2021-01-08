@@ -14,5 +14,9 @@ import javax.swing.JButton;
 public class CellulesGraphique extends JButton {
     Cellule celluleAssociee;
     
-    
+    public CellulesGraphique ( Cellule uneCellule ) {
+        celluleAssociee = uneCellule;
+        
+        
+    }
 }
