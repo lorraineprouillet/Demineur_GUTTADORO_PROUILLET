@@ -47,12 +47,13 @@ public class PanneauGraphique extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         BoutonUtiliserKit = new javax.swing.JButton();
         BoutonDrapeau = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanneauGrille.setBackground(new java.awt.Color(204, 204, 255));
         PanneauGrille.setAlignmentX(5.0F);
-        PanneauGrille.setLayout(new java.awt.GridLayout());
+        PanneauGrille.setLayout(new java.awt.GridLayout(10, 20));
 
         PanneauInfo.setBackground(new java.awt.Color(255, 204, 153));
         PanneauInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -77,17 +78,20 @@ public class PanneauGraphique extends javax.swing.JFrame {
         PanneauInfo.add(BoutonStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         LabelVie.setText("Nombre de vie restantes :");
-        PanneauInfo.add(LabelVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
+        PanneauInfo.add(LabelVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         LabelKits.setText("Nombre de kits :");
-        PanneauInfo.add(LabelKits, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+        PanneauInfo.add(LabelKits, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
         PanneauInfo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
 
         BoutonUtiliserKit.setText("Utiliser un kit");
-        PanneauInfo.add(BoutonUtiliserKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+        PanneauInfo.add(BoutonUtiliserKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
 
         BoutonDrapeau.setText("Placer un drapeau");
-        PanneauInfo.add(BoutonDrapeau, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, -1, -1));
+        PanneauInfo.add(BoutonDrapeau, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
+
+        jLabel1.setText("joueurcourant");
+        PanneauInfo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 174, 80, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,7 +110,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 664, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -156,7 +160,30 @@ public class PanneauGraphique extends javax.swing.JFrame {
             }
         });
     }
+public void initialiserPartie() {
+    
+    grillePartie.viderGrille(); // on vide la grille a chaque début de partie ( cases invisbles et pas de kits et de bombes ) 
+    
+    // on place les mines et les kits de facon aléatoire dans la grille : 
+    for(int i=0;i<=50;i++) { // un total de 50 bombes
+        int x=(int)(Math.random()*((10))); // x maximal a 10 et y maximal a 20
+        int y=(int)(Math.random()*((20)));
+        grillePartie.placerMines(x,y);
+    } //placement aléatoire des mines en fonction d'un x et y aléatoires
 
+    for(int j=0; j<=10;j++) { //un total de 10 kits
+        int x=(int)(Math.random()*((10)));
+        int y=(int)(Math.random()*((20)));
+        grillePartie.placerKits(x,y);
+        
+    }
+    grillePartie.initialiser_mines_en_contact(); 
+    String nomJ1 = FieldNom.getText();
+    Joueur joueurCourant = new  Joueur(nomJ1);
+    jLabel1.setText(nomJ1);
+    
+
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonDrapeau;
     private javax.swing.JButton BoutonStart;
@@ -167,6 +194,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
     private javax.swing.JLabel LabelVie;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JPanel PanneauInfo;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }
