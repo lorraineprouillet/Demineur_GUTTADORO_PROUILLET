@@ -24,6 +24,34 @@ public class PanneauGraphique extends javax.swing.JFrame {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 20; j++) {
                 CellulesGraphique cellGraph = new CellulesGraphique(grillePartie.cellules[i][j]);
+                
+                cellGraph.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed (java.awt.event.ActionEvent evt) {
+                        Cellule c = cellGraph.celluleAssociee;
+                        
+                        if (c.etrevisible() == true) {
+                            return;
+                        }
+                            //si la cellule est deja découverte, il ne se passe rien
+                        else {
+                           if (c.presenceKits() == true) {
+                               c.rendrevisible();
+                               joueurCourant.obtenirKits();
+                               textemessage.setText("Bravo, tu as gagné un kit de déminage!");
+                           } else if (c.presenceMines() == true) {
+                               c.rendrevisible();
+                               joueurCourant.PerdreVie();
+                               textemessage.setText("Mince tu viens de perdre une vie");
+                           } else {
+                               c.rendrevisible();
+                              
+                           }
+                        }
+                        PanneauGrille.repaint();
+                        
+                       // textemessage.setText("un bouton a été cliqué");
+                    }
+                });
                 PanneauGrille.add(cellGraph);
             }
         }
@@ -48,6 +76,10 @@ public class PanneauGraphique extends javax.swing.JFrame {
         BoutonUtiliserKit = new javax.swing.JButton();
         BoutonDrapeau = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        infosjeu = new javax.swing.JScrollPane();
+        textemessage = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,6 +125,18 @@ public class PanneauGraphique extends javax.swing.JFrame {
         jLabel1.setText("joueurcourant");
         PanneauInfo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 174, 80, 20));
 
+        jLabel2.setText("nbVies");
+        PanneauInfo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+
+        jLabel3.setText("nbKits");
+        PanneauInfo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
+
+        textemessage.setColumns(20);
+        textemessage.setRows(5);
+        infosjeu.setViewportView(textemessage);
+
+        PanneauInfo.add(infosjeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 160, 140));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,7 +154,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -124,6 +168,10 @@ public class PanneauGraphique extends javax.swing.JFrame {
     private void BoutonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonStartActionPerformed
         PanneauGrille.setVisible(true);
         
+        initialiserPartie();
+        PanneauGrille.repaint();
+        BoutonUtiliserKit.setEnabled(false); //aucun kits donc bouton indispo
+        BoutonStart.setEnabled(false); 
     }//GEN-LAST:event_BoutonStartActionPerformed
 
     /**
@@ -179,9 +227,11 @@ public void initialiserPartie() {
     }
     grillePartie.initialiser_mines_en_contact(); 
     String nomJ1 = FieldNom.getText();
-    Joueur joueurCourant = new  Joueur(nomJ1);
+    Joueur J1 = new Joueur(nomJ1);
+    joueurCourant = J1;
     jLabel1.setText(nomJ1);
-    
+    jLabel2.setText(joueurCourant.NbVieRestante+" ");
+    jLabel3.setText(joueurCourant.NbKitsDeminage+" ");
 
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -194,7 +244,11 @@ public void initialiserPartie() {
     private javax.swing.JLabel LabelVie;
     private javax.swing.JPanel PanneauGrille;
     private javax.swing.JPanel PanneauInfo;
+    private javax.swing.JScrollPane infosjeu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JTextArea textemessage;
     // End of variables declaration//GEN-END:variables
 }
