@@ -19,7 +19,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
      */
     public PanneauGraphique() {
         initComponents();
-        PanneauGrille.setVisible(false); 
+        //PanneauGrille.setVisible(false); 
         
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 20; j++) {
@@ -38,6 +38,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
                                c.rendrevisible();
                                joueurCourant.obtenirKits();
                                textemessage.setText("Bravo, tu as gagné un kit de déminage!");
+                               
                            } else if (c.presenceMines() == true) {
                                c.rendrevisible();
                                joueurCourant.PerdreVie();
@@ -47,7 +48,9 @@ public class PanneauGraphique extends javax.swing.JFrame {
                               
                            }
                         }
+                        
                         PanneauGrille.repaint();
+                        PanneauInfo.repaint();
                         
                        // textemessage.setText("un bouton a été cliqué");
                     }
@@ -55,6 +58,8 @@ public class PanneauGraphique extends javax.swing.JFrame {
                 PanneauGrille.add(cellGraph);
             }
         }
+        
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,11 +78,12 @@ public class PanneauGraphique extends javax.swing.JFrame {
         LabelVie = new javax.swing.JLabel();
         LabelKits = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        BoutonUtiliserKit = new javax.swing.JButton();
-        BoutonDrapeau = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        BoutonDrapeau = new javax.swing.JButton();
+        BoutonUtiliserKit = new javax.swing.JButton();
         infosjeu = new javax.swing.JScrollPane();
         textemessage = new javax.swing.JTextArea();
 
@@ -91,7 +97,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
         PanneauInfo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         LabelNom.setText("Nom Joueur : ");
-        PanneauInfo.add(LabelNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        PanneauInfo.add(LabelNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         FieldNom.setText(" ");
         FieldNom.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +105,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
                 FieldNomActionPerformed(evt);
             }
         });
-        PanneauInfo.add(FieldNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 130, -1));
+        PanneauInfo.add(FieldNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 130, -1));
 
         BoutonStart.setText("Start");
         BoutonStart.addActionListener(new java.awt.event.ActionListener() {
@@ -107,44 +113,73 @@ public class PanneauGraphique extends javax.swing.JFrame {
                 BoutonStartActionPerformed(evt);
             }
         });
-        PanneauInfo.add(BoutonStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
+        PanneauInfo.add(BoutonStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
 
         LabelVie.setText("Nombre de vie restantes :");
-        PanneauInfo.add(LabelVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
+        PanneauInfo.add(LabelVie, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         LabelKits.setText("Nombre de kits :");
-        PanneauInfo.add(LabelKits, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        PanneauInfo.add(LabelKits, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
         PanneauInfo.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
 
-        BoutonUtiliserKit.setText("Utiliser un kit");
-        PanneauInfo.add(BoutonUtiliserKit, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
-
-        BoutonDrapeau.setText("Placer un drapeau");
-        PanneauInfo.add(BoutonDrapeau, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, -1, -1));
-
         jLabel1.setText("joueurcourant");
-        PanneauInfo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 174, 80, 20));
+        PanneauInfo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 80, 20));
 
         jLabel2.setText("nbVies");
-        PanneauInfo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        PanneauInfo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
         jLabel3.setText("nbKits");
-        PanneauInfo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
+        PanneauInfo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 153));
+
+        BoutonDrapeau.setText("Placer un drapeau");
+
+        BoutonUtiliserKit.setText("Utiliser un kit");
 
         textemessage.setColumns(20);
         textemessage.setRows(5);
         infosjeu.setViewportView(textemessage);
 
-        PanneauInfo.add(infosjeu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 160, 140));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(BoutonUtiliserKit))
+                    .addComponent(BoutonDrapeau))
+                .addGap(18, 18, 18)
+                .addComponent(infosjeu, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(BoutonDrapeau)
+                .addGap(29, 29, 29)
+                .addComponent(BoutonUtiliserKit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infosjeu, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 2600, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -153,9 +188,12 @@ public class PanneauGraphique extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
 
         pack();
@@ -249,6 +287,7 @@ public void initialiserPartie() {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextArea textemessage;
     // End of variables declaration//GEN-END:variables
 }
