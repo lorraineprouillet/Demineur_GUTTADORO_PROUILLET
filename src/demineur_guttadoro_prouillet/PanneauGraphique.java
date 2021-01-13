@@ -17,7 +17,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
     /**
      * Creates new form PanneauGraphique
      */
-    public PanneauGraphique() {
+    public  PanneauGraphique() {
         initComponents();
         //PanneauGrille.setVisible(false); 
         
@@ -31,6 +31,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
                         
                         if (c.etrevisible() == true) {
                             return;
+                            
                         }
                             //si la cellule est deja découverte, il ne se passe rien
                         else {
@@ -45,6 +46,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
                                textemessage.setText("Mince tu viens de perdre une vie");
                            } else {
                                c.rendrevisible();
+                               
                               
                            }
                         }
