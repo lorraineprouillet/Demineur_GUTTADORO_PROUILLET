@@ -51,7 +51,10 @@ public class CellulesGraphique extends JButton {
                             setIcon(img_case3);
                         } else if (celluleAssociee.mines_en_contact == 4) {
                             setIcon(img_case4);
-                        } //photo pour les autres cases!!
+                        } else if ( celluleAssociee.mines_en_contact == 0 ) {
+                            setIcon (img_visible );
+                        }
+//photo pour les autres cases!!
                         
                     }
         } else if (celluleAssociee.etrevisible() == false) {

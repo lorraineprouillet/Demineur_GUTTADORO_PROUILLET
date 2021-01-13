@@ -1,7 +1,6 @@
-/* reste a faire : 
- * - problèmes avec le while quand case deja visible 
- * - et les whiles si ligne ou colonne superieur a 10/20
- * 
+/* bilan classe partie  : 
+ * le déroulement de la partie en mode console est fonctionnel 
+ * seul petit bemole avec le while lorsque la case est déjà dévoilée 
  */
 package demineur_guttadoro_prouillet;
 

@@ -59,8 +59,11 @@ public class Cellule {
     public boolean rendrevisible () { 
         if ( visible == true ) {
             return false;
+            
         } else {
+            visible =true;
             return true;
+            
         }
     
     }
