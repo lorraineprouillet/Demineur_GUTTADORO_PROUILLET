@@ -39,6 +39,7 @@ public class CellulesGraphique extends JButton {
                     if (celluleAssociee.presenceMines() == true) {
                         setIcon(img_bombe);
                         
+                        
                     } else if (celluleAssociee.presenceKits() == true) {
                         setIcon(img_kits);
                       

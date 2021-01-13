@@ -37,22 +37,35 @@ public class PanneauGraphique extends javax.swing.JFrame {
                         else {
                            if (c.presenceKits() == true) {
                                c.rendrevisible();
-                               joueurCourant.obtenirKits();
+                               joueurCourant.obtenirKits(); // le nombre de kits s'incrémente 
                                textemessage.setText("Bravo, tu as gagné un kit de déminage!");
                                
                            } else if (c.presenceMines() == true) {
                                c.rendrevisible();
-                               joueurCourant.PerdreVie();
+                               joueurCourant.PerdreVie(); // le nombre de vies décrémente a chaque apparition de mines 
                                textemessage.setText("Mince tu viens de perdre une vie");
                            } else {
                                c.rendrevisible();
-                               
+                               textemessage.setText("   ");
                               
                            }
                         }
                         
                         PanneauGrille.repaint();
                         PanneauInfo.repaint();
+                        jLabel2.setText(joueurCourant.NbVieRestante+" ");
+                        jLabel3.setText(joueurCourant.NbKitsDeminage+" ");
+                        
+                        if ( joueurCourant.NbKitsDeminage > 0 ) {
+                            BoutonUtiliserKit.setEnabled(true);
+                        }
+                        
+                        if ( joueurCourant.NbVieRestante == 0 ) { // uen fois que le joueur n'a plus de vies la grille disparait
+                            
+                            PanneauGrille.setVisible(false); 
+                            
+                            textemessage.setText("Vous avez perdu :( "); // un message s'affiche le joueur a perdu 
+                        }
                         
                        // textemessage.setText("un bouton a été cliqué");
                     }
@@ -83,6 +96,8 @@ public class PanneauGraphique extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        BoutonQuitter = new javax.swing.JButton();
+        BoutonRecommencer = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         BoutonDrapeau = new javax.swing.JButton();
         BoutonUtiliserKit = new javax.swing.JButton();
@@ -127,17 +142,43 @@ public class PanneauGraphique extends javax.swing.JFrame {
         jLabel1.setText("joueurcourant");
         PanneauInfo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 80, 20));
 
-        jLabel2.setText("nbVies");
+        jLabel2.setText("nbVieRestante");
         PanneauInfo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, -1, -1));
 
         jLabel3.setText("nbKits");
         PanneauInfo.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
+        BoutonQuitter.setText("Quitter");
+        BoutonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonQuitterActionPerformed(evt);
+            }
+        });
+        PanneauInfo.add(BoutonQuitter, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 80, -1));
+
+        BoutonRecommencer.setText("Nouvelle Partie");
+        BoutonRecommencer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonRecommencerActionPerformed(evt);
+            }
+        });
+        PanneauInfo.add(BoutonRecommencer, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 120, -1));
+
         jPanel1.setBackground(new java.awt.Color(255, 153, 153));
 
         BoutonDrapeau.setText("Placer un drapeau");
+        BoutonDrapeau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonDrapeauActionPerformed(evt);
+            }
+        });
 
         BoutonUtiliserKit.setText("Utiliser un kit");
+        BoutonUtiliserKit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonUtiliserKitActionPerformed(evt);
+            }
+        });
 
         textemessage.setColumns(20);
         textemessage.setRows(5);
@@ -148,13 +189,15 @@ public class PanneauGraphique extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(BoutonUtiliserKit))
-                    .addComponent(BoutonDrapeau))
-                .addGap(18, 18, 18)
+                        .addGap(22, 22, 22)
+                        .addComponent(BoutonDrapeau)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BoutonUtiliserKit)
+                        .addGap(31, 31, 31)))
                 .addComponent(infosjeu, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -163,7 +206,7 @@ public class PanneauGraphique extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(BoutonDrapeau)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(BoutonUtiliserKit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -193,9 +236,9 @@ public class PanneauGraphique extends javax.swing.JFrame {
                     .addComponent(PanneauInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PanneauGrille, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(272, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -213,6 +256,36 @@ public class PanneauGraphique extends javax.swing.JFrame {
         BoutonUtiliserKit.setEnabled(false); //aucun kits donc bouton indispo
         BoutonStart.setEnabled(false); 
     }//GEN-LAST:event_BoutonStartActionPerformed
+
+    private void BoutonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonQuitterActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+        // bouton qui permet a tout moment de quitter le jeu
+    }//GEN-LAST:event_BoutonQuitterActionPerformed
+
+    private void BoutonRecommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonRecommencerActionPerformed
+        // TODO add your handling code here:
+        PanneauGrille.setVisible(true);
+        initialiserPartie();
+        // une fois qu'une partie a été finie, le joueur peut cliquer sur partie, la grille apparait de nouveau et une nouvelle partie démarre 
+    }//GEN-LAST:event_BoutonRecommencerActionPerformed
+
+    private void BoutonUtiliserKitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonUtiliserKitActionPerformed
+        // TODO add your handling code here:
+        joueurCourant.utiliserKits();
+        //CellulesGraphique cellGraph = new CellulesGraphique(grillePartie.cellules);
+                
+            //cellGraph.addActionListener(new java.awt.event.ActionListener() {
+                    //public void actionPerformed (java.awt.event.ActionEvent evt) {
+                        //cellGraph.celluleAssociee.mines_en_contact = 0;
+                    //}
+        //});
+    }//GEN-LAST:event_BoutonUtiliserKitActionPerformed
+
+    private void BoutonDrapeauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonDrapeauActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BoutonDrapeauActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +349,8 @@ public void initialiserPartie() {
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonDrapeau;
+    private javax.swing.JButton BoutonQuitter;
+    private javax.swing.JButton BoutonRecommencer;
     private javax.swing.JButton BoutonStart;
     private javax.swing.JButton BoutonUtiliserKit;
     private javax.swing.JTextField FieldNom;
